@@ -1,12 +1,11 @@
 package com.sanyi.framework.controller;
 
-import com.sanyi.framework.service.impl.BaozhangshenqingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestBody;
-import com.sanyi.framework.model.Baozhangshenqing;
+
 import javax.servlet.http.HttpServletRequest;
 import com.sanyi.framework.page.QueryParam;
 import com.sanyi.framework.page.SanyiPage;

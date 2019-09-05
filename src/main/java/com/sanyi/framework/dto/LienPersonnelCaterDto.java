@@ -1,6 +1,5 @@
 package com.sanyi.framework.dto;
 
-import com.sanyi.framework.model.LienPersonnel;
 /**
  * 进驻表关联餐饮表
  * @author tanj8899

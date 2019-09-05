@@ -3,7 +3,6 @@ package com.sanyi.framework.dao;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
-import com.sanyi.framework.model.LienPersonnelTanHuaRelate;
 
 public interface LienPersonnelTanHuaRelateRepository extends BaseRepository<LienPersonnelTanHuaRelate>{
 

@@ -1,8 +1,7 @@
 package com.sanyi.framework.dao;
 
 import org.springframework.data.jpa.repository.Query;
-import com.sanyi.framework.model.Tanhuashenqing;
-import com.sanyi.framework.dao.BaseRepository;
+
 import java.util.List;
 
 public interface TanhuashenqingRepository extends BaseRepository<Tanhuashenqing>{

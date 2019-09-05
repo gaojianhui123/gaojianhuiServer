@@ -1,10 +1,7 @@
 package com.sanyi.framework.dto;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.sanyi.framework.model.LienPersonnel;
 
 /**
  * 进驻表关联谈话申请表

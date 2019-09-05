@@ -1,9 +1,5 @@
 package com.sanyi.framework.dto;
 
-import java.sql.Date;
-
-import com.sanyi.framework.model.LienPersonnel;
-
 /**
  * 进驻表关联保障申请表
  * 
