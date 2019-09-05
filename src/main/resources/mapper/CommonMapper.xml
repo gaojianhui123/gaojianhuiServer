@@ -2,19 +2,19 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sanyi.framework.dtomapper.CommonMapper">
+<mapper namespace="com.gaojianhui.framework.dtomapper.CommonMapper">
 	 
-    <select id="findMenusByUserid" resultType="com.sanyi.framework.model.ProtectedResource">	 
+    <select id="findMenusByUserid" resultType="com.gaojianhui.framework.model.ProtectedResource">
 			SELECT t3.*,t3.title as text,t3.url as link  FROM  t_user_roles t1 left join t_role_protected_resources t2 on t1.roles_id = t2.role_id
 		left join t_protected_resource t3 on t3.id = t2.protected_resources_id
 		where t1.user_id = #{userId} and t3.deleted is false and t3.tyle ='menu'  order by sortindex asc
    </select>
-   	<select id="findFontProtectedResourceByUserid" resultType="com.sanyi.framework.model.ProtectedResource">	 
+   	<select id="findFontProtectedResourceByUserid" resultType="com.gaojianhui.framework.model.ProtectedResource">
 			SELECT t3.* FROM  t_user_roles t1 left join t_role_protected_resources t2 on t1.roles_id = t2.role_id
 		left join t_protected_resource t3 on t3.id = t2.protected_resources_id
 		where t1.user_id = #{userId} and t3.deleted is false and t3.tyle !='url' order by sortindex asc
    	</select>
-   	<select id="selectDictionary" resultType="com.sanyi.framework.model.Dictionary">
+   	<select id="selectDictionary" resultType="com.gaojianhui.framework.model.Dictionary">
        	 SELECT t1.*,t2.`dictsortName` as sortName
        	 FROM t_dictionary t1 LEFT JOIN t_dictsort t2 ON t1.`dsId` = t2.id WHERE t1.`deleted` = FALSE 
        	 <if test="query!=null">
