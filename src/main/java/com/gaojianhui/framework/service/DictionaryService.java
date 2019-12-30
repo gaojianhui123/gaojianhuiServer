@@ -1,23 +1,19 @@
 package com.gaojianhui.framework.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
-import com.gaojianhui.framework.dao.DictionaryRepository;
-import com.gaojianhui.framework.dtomapper.CommonMapper;
 import com.gaojianhui.framework.exception.BusinessException;
-import com.gaojianhui.framework.model.Dictionary;
-import com.gaojianhui.framework.model.QDictionary;
 import com.gaojianhui.framework.service.impl.BaseService;
+import com.gaojianhui.framework.dao.DictionaryRepository;
+import com.gaojianhui.framework.mapper.CommonMapper;
+import com.gaojianhui.framework.model.QDictionary;
+import com.gaojianhui.framework.model.Dictionary;
 import com.gaojianhui.framework.util.ObjectUtil;
-
-import org.springframework.stereotype.Service;
 import com.gaojianhui.framework.page.QueryParam;
+import org.springframework.stereotype.Service;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.BooleanBuilder;
 import java.util.function.Function;
 import java.util.List;
-
-
 @Service
 public class DictionaryService extends BaseService<Dictionary>{
 	@Autowired
