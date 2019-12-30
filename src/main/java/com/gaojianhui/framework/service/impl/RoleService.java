@@ -42,15 +42,8 @@ public class RoleService extends BaseService<Role> {
 	
 	
 	public Role roleDelete(Role role) {
-		Boolean iscontrainArticle = userRepository.exists(QUser.user.roles.contains(role).and(QUser.user.deleted.eq(false)));
-		if(iscontrainArticle) {
-			role.setErrorMsg("该栏目下存在文章！");
-			return role;
-		}else {
 			role.setDeleted(true);
 			return roleRepository.save(role);
-		}
-		
 	}
 	
 	/**

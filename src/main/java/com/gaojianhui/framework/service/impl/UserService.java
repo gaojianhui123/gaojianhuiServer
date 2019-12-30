@@ -95,7 +95,7 @@ public class UserService extends BaseService<User> implements UserDetailsService
 		// 这是针对修改用户信息来说的
 		User currentUser = userRepository.findById(user.getId()).get();
 		if (currentUser != null) {
-			currentUser.setPassword(user.getUpdatePassword());
+			currentUser.setPassword("");
 		}
 		return userRepository.save(currentUser);
 	}
