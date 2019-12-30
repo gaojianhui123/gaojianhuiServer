@@ -1,37 +1,44 @@
 package com.gaojianhui.framework.model;
-
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.GrantedAuthority;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import javax.persistence.ManyToMany;
-import javax.persistence.FetchType;
-import javax.persistence.Transient;
-import javax.persistence.Entity;
-import javax.persistence.Column;
-import javax.persistence.Table;
+import javax.validation.constraints.Size;
 import java.util.Collection;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-
+/**
+ * 用户表
+ */
 @Entity
-@Table(name = "t_user")
+@Table(name = "t_user",
+		indexes = {@Index(columnList = "username"),
+				@Index(columnList = "telphone"),
+				@Index(columnList = "ukey"),
+				@Index(columnList = "userType")})
+@Inheritance(strategy=InheritanceType.JOINED)
 public class User extends BaseEntity implements UserDetails {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 5406596740421570032L;
 
+	@Size(max=50,min=2,message="登录名应该是2-50个字符长度")
 	@Column(length = 50)
 	private String username;
+	@Column(length = 1)
+	private String sex;//
 	@Column(length = 20)
 	private String telphone;
 	@Column(length = 200)
 	private String img;
+	@Column(length = 200)
+	private String ukey;
+	@Size(max=50,message="用户类型不能超过32个字符")
+	@Column(length = 50, name = "userType")
+	private String userType;
 	/**
 	 * 密码
 	 */
@@ -47,51 +54,26 @@ public class User extends BaseEntity implements UserDetails {
 	private Boolean enabled;
 	@Column()
 	private Boolean buildinadmin=false;
-	/**
-	 * 党组织审核通过
-	 */
-	@Column()
-	private Boolean dangzuzhipassed=false;
-
-	/**
-	 * 楼号
-	 */
-	@Column(length=100)
-	private String build;
-	/**
-	 * 门牌号
-	 */
-	@Column(length=100)
-	private String door;
 
 	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(name="sycore_user_role",
+			joinColumns={@JoinColumn(name="user_id")},
+			inverseJoinColumns={@JoinColumn(name="role_id")})
 	private Set<Role> roles = new HashSet<Role>();
 	/**
-	 *部门id
+	 *机构id
 	 */
-	@Column(length = 36)
-	private String bumenId;
-	// 部门名称
-	@Transient
-	private String bumenName;
-	
+	@Column(length = 32)
+	private String orgId;
+
 	@Column(length=100)
 	private String wxopenid;
-	
+
 	@Column(length=200)
 	private String address;
-	
-	/*
-	 * 看护力量id
-	 */
-	@Column(length = 36)
-	private String kanhuId;
-	/*
-	 * 医护人员id
-	 */
-	@Column(length = 36)
-	private String yihurenyuan;
-	
+
+	@Transient
+	private String orgName;
 	// 修改密码
 	@Transient
 	private String oldpassword;
@@ -101,68 +83,6 @@ public class User extends BaseEntity implements UserDetails {
 	private String updatePassword;
 	@Transient
 	private String secondPassword;
-	
-	
-	
-	public String getYihurenyuan() {
-		return yihurenyuan;
-	}
-
-
-	public void setYihurenyuan(String yihurenyuan) {
-		this.yihurenyuan = yihurenyuan;
-	}
-
-
-	public String getKanhuId() {
-		return kanhuId;
-	}
-
-
-	public void setKanhuId(String kanhuId) {
-		this.kanhuId = kanhuId;
-	}
-
-
-	public String getSecondPassword() {
-		return secondPassword;
-	}
-
-
-	public void setSecondPassword(String secondPassword) {
-		this.secondPassword = secondPassword;
-	}
-
-
-	public String getOldpassword() {
-		return oldpassword;
-	}
-
-
-	public void setOldpassword(String oldpassword) {
-		this.oldpassword = oldpassword;
-	}
-
-
-	public String getErrorMsg() {
-		return errorMsg;
-	}
-
-
-	public void setErrorMsg(String errorMsg) {
-		this.errorMsg = errorMsg;
-	}
-
-
-	public String getUpdatePassword() {
-		return updatePassword;
-	}
-
-
-	public void setUpdatePassword(String updatePassword) {
-		this.updatePassword = updatePassword;
-	}
-
 
 	public String getUsername() {
 		return username;
@@ -180,7 +100,6 @@ public class User extends BaseEntity implements UserDetails {
 	}
 	public void setPassword(String password) {
 		this.password = new BCryptPasswordEncoder().encode(password);
-		// this.password=password;
 	}
 	@Override
 	@JsonIgnore
@@ -215,12 +134,6 @@ public class User extends BaseEntity implements UserDetails {
 		this.enabled = enabled;
 	}
 
-
-
-//	public Boolean getEnabled() {
-//		return enabled;
-//	}
-
 	public Set<Role> getRoles() {
 		return roles;
 	}
@@ -229,7 +142,6 @@ public class User extends BaseEntity implements UserDetails {
 		this.roles = roles;
 	}
 
-
 	public String getTelphone() {
 		return telphone;
 	}
@@ -237,41 +149,6 @@ public class User extends BaseEntity implements UserDetails {
 	public void setTelphone(String telphone) {
 		this.telphone = telphone;
 	}
-
-
-	public Boolean getDangzuzhipassed() {
-		return dangzuzhipassed;
-	}
-
-	public void setDangzuzhipassed(Boolean dangzuzhipassed) {
-		this.dangzuzhipassed = dangzuzhipassed;
-	}
-
-
-	public String getBuild() {
-		return build;
-	}
-
-	public void setBuild(String build) {
-		this.build = build;
-	}
-
-	public String getDoor() {
-		return door;
-	}
-
-	public void setDoor(String door) {
-		this.door = door;
-	}
-
-	public String getWxopenid() {
-		return wxopenid;
-	}
-
-	public void setWxopenid(String wxopenid) {
-		this.wxopenid = wxopenid;
-	}
-
 	public String getImg() {
 		return img;
 	}
@@ -279,31 +156,6 @@ public class User extends BaseEntity implements UserDetails {
 	public void setImg(String img) {
 		this.img = img;
 	}
-
-//	public String getProviceid() {
-//		return proviceid;
-//	}
-//
-//	public void setProviceid(String proviceid) {
-//		this.proviceid = proviceid;
-//	}
-//
-//	public String getCityid() {
-//		return cityid;
-//	}
-//
-//	public void setCityid(String cityid) {
-//		this.cityid = cityid;
-//	}
-//
-//	public String getDistrictid() {
-//		return districtid;
-//	}
-//
-//	public void setDistrictid(String districtid) {
-//		this.districtid = districtid;
-//	}
-
 
 	public String getAddress() {
 		return address;
@@ -327,22 +179,6 @@ public class User extends BaseEntity implements UserDetails {
 
 	public void setIsadmin(Boolean isadmin) {
 		this.isadmin = isadmin;
-	}
-
-	public String getBumenId() {
-		return bumenId;
-	}
-
-	public void setBumenId(String bumenId) {
-		this.bumenId = bumenId;
-	}
-
-	public String getBumenName() {
-		return bumenName;
-	}
-
-	public void setBumenName(String bumenName) {
-		this.bumenName = bumenName;
 	}
 
 	public Boolean getEnabled() {
