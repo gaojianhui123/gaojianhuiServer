@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.gaojianhui.framework.dtomapper.CommonMapper">
+<mapper namespace="com.gaojianhui.framework.mapper.CommonMapper">
 	 
     <select id="findMenusByUserid" resultType="com.gaojianhui.framework.model.ProtectedResource">
 			SELECT t3.*,t3.title as text,t3.url as link  FROM  t_user_roles t1 left join t_role_protected_resources t2 on t1.roles_id = t2.role_id
