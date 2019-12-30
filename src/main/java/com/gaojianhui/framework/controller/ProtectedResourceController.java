@@ -1,24 +1,21 @@
 package com.gaojianhui.framework.controller;
 
+import com.gaojianhui.framework.service.impl.ProtectedResourceService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestBody;
+import com.gaojianhui.framework.service.impl.UserService;
+import com.gaojianhui.framework.model.ProtectedResource;
+import org.apache.commons.collections.map.HashedMap;
+import com.gaojianhui.framework.mapper.CommonMapper;
+import com.gaojianhui.framework.util.TreeBuilder;
+import com.gaojianhui.framework.page.QueryParam;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Optional;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-
-import javax.servlet.http.HttpServletRequest;
-
-import com.gaojianhui.framework.model.ProtectedResource;
-import com.gaojianhui.framework.page.QueryParam;
-import com.gaojianhui.framework.service.impl.ProtectedResourceService;
-import com.gaojianhui.framework.service.impl.UserService;
-import com.gaojianhui.framework.util.TreeBuilder;
-import org.apache.commons.collections.map.HashedMap;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.gaojianhui.framework.dtomapper.CommonMapper;
 
 @RestController
 @RequestMapping(value = "/protectedResource")
