@@ -11,13 +11,10 @@ spring.datasource.hikari.pool-name=DatebookHikariCP
 spring.datasource.hikari.max-lifetime=1800000
 spring.datasource.hikari.connection-timeout=28800
 spring.datasource.hikari.connection-test-query=SELECT 1
-#liuzhi
+#mine库
 spring.datasource.username = root
-spring.datasource.password = root
-#sy
-#spring.datasource.username = liuzhixitong
-#spring.datasource.password =111111
-#sanyi1201
+spring.datasource.password = 111111
+#jpa链接的数据库
 spring.jpa.database = MYSQL
 # Show or not log for each sql query
 spring.jpa.show-sql = true
