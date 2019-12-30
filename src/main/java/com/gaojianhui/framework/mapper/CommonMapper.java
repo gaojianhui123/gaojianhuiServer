@@ -1,10 +1,10 @@
-package com.gaojianhui.framework.dtomapper;
+package com.gaojianhui.framework.mapper;
 
-import com.gaojianhui.framework.model.Dictionary;
 import com.gaojianhui.framework.model.ProtectedResource;
+import com.gaojianhui.framework.model.Dictionary;
+import org.springframework.stereotype.Repository;
 import com.gaojianhui.framework.page.QueryParam;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
